@@ -1,3 +1,5 @@
+import com.thoughtworks.gauge.ContinueOnFailure;
+import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import element.ReadFiles;
 import io.appium.java_client.MobileElement;
@@ -10,7 +12,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,16 @@ import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofMillis;
 
 public class StepImplementation extends HookImplementation {
+
+
+
+    @Step("Fail Step")
+    public void assertionError() {
+        Assert.fail();
+
+
+
+    }
 
 
     @Step({"<key> li elementi bul ve tıkla", "Click element by <key>"})
@@ -54,6 +65,8 @@ public class StepImplementation extends HookImplementation {
     @Step({"<seconds> saniye bekle ", "Wait <second> seconds"})
     public void waitBySecond(int seconds) throws InterruptedException {
         Thread.sleep(seconds * 1000);
+
+
     }
 
     @Step("geri butonuna bas")
