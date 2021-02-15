@@ -1,0 +1,64 @@
+[
+  {
+    "key": "tryItOut",
+    "value": "create_account_preview",
+    "type": "id"
+  },
+  {
+    "key": "icelandFlag",
+    "value": "(//android.widget.ImageView[@content-desc=\"Country flag\"])[5]",
+    "type": "xpath"
+  },
+  {
+    "key": "doneButton",
+    "value": "buttonDone",
+    "type": "id"
+  },
+  {
+    "key": "turkishLanguage",
+    "value": "//android.widget.FrameLayout[1]/android.widget.CheckBox",
+    "type": "xpath"
+  },
+  {
+    "key": "carouselDescription",
+    "value": "carousel_description",
+    "type": "id"
+  },
+  {
+    "key": "swedenFlag",
+    "value": "(//android.widget.ImageView[@content-desc=\"Country flag\"])[1]",
+    "type": "xpath"
+  },
+  {
+    "key": "germanFlag",
+    "value": "(//android.widget.ImageView[@content-desc=\"Country flag\"])[5]",
+    "type": "xpath"
+  },
+  {
+    "key": "icelandRadioButton",
+    "value": "Iceland",
+    "type": "name"
+  },
+  {
+    "key": "radioButtonsFlag",
+    "value": "//android.widget.RadioButton",
+    "type": "xpath"
+  },
+  {
+    "key": "checkBoxesLanguages",
+    "value": "//android.widget.CheckBox",
+    "type": "xpath"
+  },
+  {
+    "key": "selectionList",
+    "value": "//android.widget.TextView",
+    "type": "xpath"
+  },
+  {
+    "key": "feelGoodSecondBook",
+    "value": "(//android.view.ViewGroup[@content-desc=\"Feelgood\"]//android.widget.ImageView)[3]",
+    "type": "xpath"
+  }
+
+
+]
