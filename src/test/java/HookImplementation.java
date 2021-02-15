@@ -1,17 +1,25 @@
 import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.BeforeScenario;
+import com.thoughtworks.gauge.ExecutionContext;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidStartScreenRecordingOptions;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.screenrecording.CanRecordScreen;
+import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class HookImplementation {
 
@@ -22,10 +30,14 @@ public class HookImplementation {
     public static URL url;
     public static DesiredCapabilities capabilities;
     public static Boolean localAndroid = true;
+    String currentScenarioName = null;
 
 
     @BeforeScenario
-    public void setup() throws MalformedURLException {
+    public void setup(ExecutionContext context) throws MalformedURLException {
+
+         currentScenarioName = context.getCurrentScenario().getName().toUpperCase();
+
 
 
         if (localAndroid) {
@@ -44,14 +56,14 @@ public class HookImplementation {
             capabilities.setCapability("udid","emulator-5554");
             //capabilities.setCapability("appPackage", "com.marketyo.platform");
             //capabilities.setCapability("appActivity", "com.marketyo.platform.root.main.activities.landing.LandingActivity");
-
+            capabilities.setCapability("adbExecTimeout", 90000);
             capabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/main/resources/getir-testing-case-study.apk");
             ///Users/mac/Downloads/android-ui-master/example.apk
 
 
             driver = new AndroidDriver(url, capabilities);
             wait = new WebDriverWait(driver, 10);
-
+            ((CanRecordScreen)driver).startRecordingScreen(new AndroidStartScreenRecordingOptions());
 
         } else {
 
@@ -73,7 +85,15 @@ public class HookImplementation {
 
 
     @AfterScenario
-    public void close() {
+    public void close() throws IOException {
+
+        String base64String = ((CanRecordScreen)driver).stopRecordingScreen();
+        byte[] data = Base64.decodeBase64(base64String);
+        String
+                destinationPath=System.getProperty("user.dir") + "/src/main/resources/"+ currentScenarioName+".mp4";
+        Path path = Paths.get(destinationPath);
+        Files.write(path, data);
+
 
         driver.quit();
     }
