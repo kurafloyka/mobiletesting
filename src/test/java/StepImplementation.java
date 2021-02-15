@@ -7,11 +7,16 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +29,19 @@ public class StepImplementation extends HookImplementation {
 
 
     @Step("Fail Step")
-    public void assertionError() {
+    public void assertionError() throws InterruptedException, IOException {
+
+        Thread.sleep(2000);
+        screenShot();
         Assert.fail();
 
 
 
+
     }
+
+
+
 
 
     @Step({"<key> li elementi bul ve tıkla", "Click element by <key>"})
@@ -69,6 +81,14 @@ public class StepImplementation extends HookImplementation {
 
     }
 
+
+    public void screenShot() throws IOException {
+
+
+        File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "/src/main/resources/capture.jpg"));
+    }
+
     @Step("geri butonuna bas")
     public void clickBybackButton() {
 
@@ -77,26 +97,37 @@ public class StepImplementation extends HookImplementation {
 
     }
 
+    @Step("Take a screenshot")
+    public void test() throws IOException {
+        screenShot();
+    }
+
 
     public static void sendKeys(String elementValue, String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (ReadFiles.readLocator(elementValue))).sendKeys(text);
+        getMobileElement(elementValue).sendKeys(text);
         LOGGER.info(ReadFiles.readLocator(elementValue) + " is typed... ");
 
     }
 
     public static void clickElement(String elementValue) {
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (ReadFiles.readLocator(elementValue))).click();
+        getMobileElement(elementValue).click();
         LOGGER.info(ReadFiles.readLocator(elementValue) + " is clicked... ");
     }
 
     public static void clearElement(String elementValue) {
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (ReadFiles.readLocator(elementValue))).clear();
+        getMobileElement(elementValue).clear();
         LOGGER.info(ReadFiles.readLocator(elementValue) + " is cleared... ");
+    }
+
+    @Step("Check element visibility <element>")
+    public void checkElementOfVisible(String elementValue){
+
+        Assert.assertEquals(true,getMobileElement(elementValue).isDisplayed());
+        LOGGER.info("Element is visible");
+
+
     }
 
     @Step("Swipe vertically between <firstElement> to <secondElement>")
