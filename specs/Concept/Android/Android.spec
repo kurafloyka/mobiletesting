@@ -5,13 +5,12 @@ Successful Login
 -------------------------
 Tags:successfullogin
 * Login
-* Check element visibility "submit"
 * Check element visibility "profile"
 
 Unsuccessful Login
 -------------------------
 Tags:unsuccessfullogin
-* Login
+* Login1
 * Wait "2" seconds
 * Check element visibility "submit"
 
@@ -26,8 +25,13 @@ Tags:successfullogout
 AddProductOnCartAndRemove
 ---------------------------
 Tags:addproductoncartandremove
-* Wait "4" seconds
-
+* Login
+* "Meyve ve Sebze" is click and randomly select product
+* Click element by "backButton"
+* "Süt & Kahvaltı" is click and randomly select product
+* Click element by "backButton"
+* "Bebek" is click and randomly select product
+* Click element by "backButton"
 
 AddProductOnCartIncreaseCountPayAndRemove
 ---------------------------

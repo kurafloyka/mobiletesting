@@ -9,9 +9,11 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ByIdOrName;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
@@ -19,13 +21,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofMillis;
 
 public class StepImplementation extends HookImplementation {
-
 
 
     @Step("Fail Step")
@@ -35,10 +37,33 @@ public class StepImplementation extends HookImplementation {
         screenShot();
         Assert.fail();
 
+    }
 
 
+    @Step("<tabName> is click and randomly select product")
+    public void randomlySelectProduct(String tabName) {
+
+        String el = "//android.widget.TextView[contains(@text, '" + tabName + "')]";
+
+        LOGGER.info(el);
+        MobileElement element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath(el)));
+
+        element.click();
+
+
+        //listeye donecek id yi bulamadim henuz
+        List<MobileElement> list = driver.findElementsByAccessibilityId("btnAdd");
+        LOGGER.info("LISTE" + list.size());
+
+
+        Random rand = new Random();
+        int rand_int1 = rand.nextInt(list.size());
+
+        list.get(rand_int1).click();
 
     }
+
 
 
 
@@ -85,7 +110,7 @@ public class StepImplementation extends HookImplementation {
     public void screenShot() throws IOException {
 
 
-        File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "/src/main/resources/capture.jpg"));
     }
 
@@ -122,9 +147,9 @@ public class StepImplementation extends HookImplementation {
     }
 
     @Step("Check element visibility <element>")
-    public void checkElementOfVisible(String elementValue){
+    public void checkElementOfVisible(String elementValue) {
 
-        Assert.assertEquals(true,getMobileElement(elementValue).isDisplayed());
+        Assert.assertEquals(true, getMobileElement(elementValue).isDisplayed());
         LOGGER.info("Element is visible");
 
 
