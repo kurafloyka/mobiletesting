@@ -2,10 +2,15 @@ Created by farukakyol on 17.02.2021
 
 This is a concept file with following syntax for each concept.
 # Login
-* "1" saniye bekle
+* Find element by "username" clear and send keys "hello@getir.com"
+* Find element by "password" clear and send keys "hello"
+* Click element by "submit"
 
 # Login1
-* "1" saniye bekle
+* Find element by "username" clear and send keys "helloo@getir.com"
+* Find element by "password" clear and send keys "helloo"
+* Click element by "submit"
 
 # Logout
-* "1" saniye bekle
+* Click element by "profile"
+* Click element by "logout"
