@@ -44,5 +44,18 @@
     "value": "//android.widget.LinearLayout/android.widget.ImageView[1]",
     "type": "xpath"
 
+  },{"key": "increaseCountOfProduct",
+  "value": "//android.widget.LinearLayout/android.widget.ImageView[2]",
+  "type": "xpath"
+
+},
+
+  {"key": "paymentButton",
+    "value": "btnCheckout",
+    "type": "id"
+
   }
+
+
+
 ]

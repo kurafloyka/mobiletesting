@@ -355,4 +355,18 @@ public class StepImplementation extends HookImplementation {
 
 
     }
+
+    @Step("Increase Product Value")
+    public void implementation3() {
+
+
+        List<MobileElement> list = getMobileElements("increaseCountOfProduct");
+        LOGGER.info("size" + list.size());
+
+        for (MobileElement i : list){
+            i.click();
+        }
+
+
+    }
 }

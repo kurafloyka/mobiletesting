@@ -40,9 +40,25 @@ Tags:addproductoncartandremove
 AddProductOnCartIncreaseCountPayAndRemove
 ---------------------------
 Tags:addproductoncartincreasecountpayandremove
-* Wait "1" seconds
-
-
+* Login
+* "Meyve ve Sebze" is click and randomly select product
+* Click element by "backButton"
+* "Süt & Kahvaltı" is click and randomly select product
+* Click element by "backButton"
+* Move to bottom
+* "Bebek" is click and randomly select product
+* Click element by "backButton"
+* Click element by "basketButton"
+* Move to bottom
+* Increase Product Value
+* Click element by "paymentButton"
+* Click element by "backButton"
+* Click element by "removeProduct"
+* Click element by "removeProduct"
+* Click element by "removeProduct"
+* Click element by "removeProduct"
+* Click element by "removeProduct"
+* Click element by "removeProduct"
 Fail Scenario
 ----------------
 Tags: failscenario
