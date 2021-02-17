@@ -1,5 +1,3 @@
-import com.thoughtworks.gauge.ContinueOnFailure;
-import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import element.ReadFiles;
 import io.appium.java_client.MobileElement;
@@ -13,7 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.support.ByIdOrName;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 

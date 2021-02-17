@@ -50,12 +50,12 @@ public class HookImplementation {
             capabilities.setCapability("platformVersion", "6.0");
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("unicodeKeyboard", "false");
-            capabilities.setCapability("noReset", "true");  //noReset just clears the app data, such as its cache.
-            //capabilities.setCapability("fullReset", "true");  //fullRest uninstalls the app. with app ipa,apk
+            capabilities.setCapability("noReset", "false");  //noReset just clears the app data, such as its cache.
+            capabilities.setCapability("fullReset", "true");  //fullRest uninstalls the app. with app ipa,apk
             //capabilities.setCapability("udid", "410027a3457c9183");
             capabilities.setCapability("udid","emulator-5554");
-            //capabilities.setCapability("appPackage", "com.marketyo.platform");
-            //capabilities.setCapability("appActivity", "com.marketyo.platform.root.main.activities.landing.LandingActivity");
+            //capabilities.setCapability("appPackage", "com.xxx.xxx");
+            //capabilities.setCapability("appActivity", "com.xxx.xxx.LandingActivity");
             capabilities.setCapability("adbExecTimeout", 90000);
             capabilities.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/main/resources/getir-testing-case-study.apk");
             ///Users/mac/Downloads/android-ui-master/example.apk
