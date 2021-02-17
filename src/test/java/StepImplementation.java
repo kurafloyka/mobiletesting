@@ -53,9 +53,9 @@ public class StepImplementation extends HookImplementation {
 
 
         //listeye donecek id yi bulamadim henuz
-        List<MobileElement> list = driver.findElementsByAccessibilityId("btnAdd");
-        LOGGER.info("LISTE" + list.size());
+        List<MobileElement> list = getMobileElements("productList");
 
+        LOGGER.info("LISTE" + list.size());
 
         Random rand = new Random();
         int rand_int1 = rand.nextInt(list.size());
@@ -63,10 +63,6 @@ public class StepImplementation extends HookImplementation {
         list.get(rand_int1).click();
 
     }
-
-
-
-
 
 
     @Step({"<key> li elementi bul ve tıkla", "Click element by <key>"})
@@ -95,6 +91,21 @@ public class StepImplementation extends HookImplementation {
         TouchAction ts = new TouchAction(driver);
         ts.press(point(x, top_y)).waitAction(waitOptions(ofMillis(2000))).moveTo(point(x, bottom_y)).release().perform();
 
+
+    }
+
+    @Step("Move to bottom")
+    public void moveToBelow() {
+
+        Dimension dim = driver.manage().window().getSize();
+        int height = dim.getHeight();
+        int width = dim.getWidth();
+        int x = width / 2;
+        int top_y = (int) (height * 0.80);
+        int bottom_y = (int) (height * 0.20);
+        //System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
+        TouchAction ts = new TouchAction(driver);
+        ts.press(point(x, top_y)).waitAction(waitOptions(ofMillis(2000))).moveTo(point(x, bottom_y)).release().perform();
 
     }
 
@@ -183,7 +194,7 @@ public class StepImplementation extends HookImplementation {
 
 
     public static MobileElement getMobileElement(String element) {
-        LOGGER.info("All mobile elements are added to arraylist");
+        //LOGGER.info("All mobile elements are added to arraylist");
         return (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated
                 (ReadFiles.readLocator(element)));
 
@@ -193,7 +204,7 @@ public class StepImplementation extends HookImplementation {
     public static List<MobileElement> getMobileElements(String element) {
 
         List<MobileElement> mobileElementList = (List<MobileElement>) driver.findElements(ReadFiles.readLocator(element));
-        LOGGER.info("All mobile elements are added to arraylist");
+        //LOGGER.info("All mobile elements are added to arraylist");
         return mobileElementList;
     }
 
@@ -324,6 +335,23 @@ public class StepImplementation extends HookImplementation {
 
         String bookName = secondBook.getText();
         LOGGER.info(bookName);
+
+
+    }
+
+    @Step("RemoveAllAddedProduct")
+    public void implementation2() throws InterruptedException {
+
+
+        List<MobileElement> list = getMobileElements("removeProduct");
+
+        int size = list.size();
+        LOGGER.info("SIZE" + size);
+        for (MobileElement i : list) {
+
+            Thread.sleep(20);
+            i.click();
+        }
 
 
     }

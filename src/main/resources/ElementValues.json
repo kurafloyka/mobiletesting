@@ -19,13 +19,30 @@
     "value": "ga_toolbar_leftIconImageView",
     "type": "id"
   },
-
   {
     "key": "logout",
     "value": "//android.widget.TextView[contains(@text, 'Log out')]",
     "type": "xpath"
+  },
+  {
+    "key": "productList",
+    "value": "//android.widget.LinearLayout/android.widget.ImageView",
+    "type": "xpath"
+  },
+  {
+    "key": "backButton",
+    "value": "ga_toolbar_leftIconImageView",
+    "type": "id"
+  },
+  {
+    "key": "basketButton",
+    "value": "ga_toolbar_getir10GABasketButton",
+    "type": "id"
+  },
+
+  {"key": "removeProduct",
+    "value": "//android.widget.LinearLayout/android.widget.ImageView[1]",
+    "type": "xpath"
+
   }
-
-
-
 ]
